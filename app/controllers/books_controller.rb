@@ -4,7 +4,7 @@ class BooksController < ApplicationController
     @books = Book.all(:include => :statuses)
     
     respond_to do |format|
-      format.html
+      format.html { render :partial => 'book_list', :collection => @books if request.xhr?}
       format.xml { render :xml => @books.to_xml }
     end
   end
@@ -29,6 +29,19 @@ class BooksController < ApplicationController
   
   def show
     @book = Book.find(params[:id], :include => [:statuses])
+  end
+  
+  def search
+    conditions = ["title LIKE ?", "%#{params[:query][:keyword]}%"] unless params[:query].nil?
+    
+    @books = Book.all(:include => :statuses, :conditions => conditions)
+    
+    respond_to do |format|
+      format.html { render :partial => 'book_list', :collection => @books if request.xhr?}
+      format.xml { render :xml => @books.to_xml }
+    end
+  
+    render :action => "index"    
   end
   
 end

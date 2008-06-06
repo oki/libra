@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
-  map.resources :books
+  map.resources :books,
+    :collection => {:sort => :put},
+    :collection => {:search => :post}
   map.resources :descriptions, :has_one => :book
 
   # Sample of regular route:

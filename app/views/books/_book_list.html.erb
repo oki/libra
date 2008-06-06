@@ -1,0 +1,10 @@
+<tr>
+  <td>1</td>
+  <td><%= book_list.title %></td>
+  <td><%= book_list.author %></td>
+  <td><%= book_list.available? ? (link_to "Wypozycz", :acition => :dupa) : book_list.first_available %></td>
+  <td><%= book_list.available? ? "tak" : "nie" %></td>
+  <td><%= link_to 'Show', book_list %></td>
+  <td><%= link_to 'Edit', edit_book_path(book_list) %></td>
+  <td><%= link_to 'Destroy', book_list, :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>
