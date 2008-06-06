@@ -1,0 +1,68 @@
+
+<table>
+  <tr>
+    <td>Tytuł:</td>
+    <td><%= @book.title %></td>
+  </tr>
+  
+  <tr>
+    <td>Autor:</td>
+    <td><%= @book.author %></td>
+  </tr>
+  
+  <tr>
+    <td>Opis:</td>
+    <td><%= @book.content %></td>
+  </tr>
+</table>
+
+<hr />
+
+<i>Egzemplarze</i>
+<table border="1">
+  <tr>
+    <td>Lp.</td>
+    <td>stan</td>
+  </tr>
+  
+  <% for s in @book.statuses %>
+    <tr>
+      <td>1</td>
+      <td><%= s.loan.nil? ? "wolna" : "wypozyczona" %></td>
+    </tr>        
+  <% end %>
+</table>
+
+<br />
+
+<i>Historia:</i>
+<table>
+  <tr>
+    <td>Wypozyczenia</td>
+    <td>Zamowienia</td>
+  </tr>
+  
+  <tr>
+    <td>
+      <% for loan in @book.loans %>
+        wypozyczone: <%= loan.created_at %><br />
+        oddane: <%= loan.date_returned %><br />
+        user: <%= loan.user.login %>
+        <hr />
+      <% end %>
+    </td>
+    
+    <td>
+      <% for request in @book.requests %>
+        data: <%= request.created_at %><br />
+        user: <%= request.user.login %>
+        <hr />           
+      
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<hr />
+
+<%= link_to "wróc do listy", :action => "index" %>

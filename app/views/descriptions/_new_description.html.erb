@@ -1,0 +1,17 @@
+<%= error_messages_for :description %>
+
+<% remote_form_for :description, @description, :url => descriptions_path do |f| %>
+  <table>
+    <tr>
+      <td><%= f.label "Tytuł" %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+  
+    <tr>
+      <td><%= f.label "Autor" %></td>
+      <td><%= f.text_field :author %></td>
+    </tr>
+  </table>
+  <%= f.submit "Dodaj" %>
+
+<% end %>

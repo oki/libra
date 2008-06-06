@@ -1,0 +1,31 @@
+<h1>Books</h1>
+
+<table border="1">
+  <tr>
+    <td>Lp.</td>
+    <td>Tytul</td>
+    <td>Autor</td>
+    <td>Data zwrotu</td>
+    <td>Dostepna</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+  <% for book in @books %>
+    <tr>
+      <td>1</td>
+      <td><%= book.title %></td>
+      <td><%= book.author %></td>
+      <td><%= book.available? ? (link_to "Wypozycz", :acition => :dupa) : book.first_available %></td>
+      <td><%= book.available? ? "tak" : "nie" %></td>
+      <td><%= link_to 'Show', book %></td>
+      <td><%= link_to 'Edit', edit_book_path(book) %></td>
+      <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New book', new_book_path %>

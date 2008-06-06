@@ -1,0 +1,28 @@
+# == Schema Information
+# Schema version: 20080605111852
+#
+# Table name: loans
+#
+#  id                  :integer(11)     not null, primary key
+#  user_id             :integer(11)     
+#  book_id             :integer(11)     
+#  date_issued         :datetime        
+#  date_due_for_return :datetime        
+#  date_returned       :datetime        
+#  created_at          :datetime        
+#  updated_at          :datetime        
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  date_issued: 2008-05-19 00:40:23
+  date_due_for_return: 2008-05-19 00:40:23
+  date_returned: 2008-05-19 00:40:23
+
+two:
+  user_id: 1
+  date_issued: 2008-05-19 00:40:23
+  date_due_for_return: 2008-05-19 00:40:23
+  date_returned: 2008-05-19 00:40:23

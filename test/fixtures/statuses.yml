@@ -1,0 +1,24 @@
+# == Schema Information
+# Schema version: 20080605111852
+#
+# Table name: statuses
+#
+#  id         :integer(11)     not null, primary key
+#  book_id    :integer(11)     
+#  loan_id    :integer(11)     
+#  request_id :integer(11)     
+#  created_at :datetime        
+#  updated_at :datetime        
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  book_id: 1
+  loan_id: 1
+  request_id: 1
+
+two:
+  book_id: 1
+  loan_id: 1
+  request_id: 1

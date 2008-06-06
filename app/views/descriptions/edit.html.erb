@@ -1,0 +1,12 @@
+<h1>Editing description</h1>
+
+<%= error_messages_for :description %>
+
+<% form_for(@description) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @description %> |
+<%= link_to 'Back', descriptions_path %>
