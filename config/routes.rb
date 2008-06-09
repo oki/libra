@@ -1,9 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
   map.resources :books,
-    :collection => {:sort => :put},
-    :collection => {:search => :post}
-  map.resources :descriptions, :has_one => :book
+    :collection => { :search => :post,
+      :loaned => :get,
+      :requested => :get,
+      :available => :get
+  },
+  :member => { :loan => :put }
+
+      
+#  map.resources :descriptions, :has_one => :book
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'

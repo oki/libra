@@ -44,4 +44,15 @@ class BooksController < ApplicationController
     render :action => "index"    
   end
   
+
+  def loan
+    @book = Book.find(params[:id])
+    render :text => @book.id
+  end
+
+  def loaned
+    @book = Book.loaned  
+  end
+  
+  
 end
