@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20080605111852
+# Schema version: 20080611174856
 #
 # Table name: loans
 #

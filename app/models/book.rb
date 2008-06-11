@@ -1,20 +1,21 @@
 # == Schema Information
-# Schema version: 20080605111852
+# Schema version: 20080611174856
 #
 # Table name: books
 #
-#  id         :integer(11)     not null, primary key
-#  quantity   :integer(11)     
-#  created_at :datetime        
-#  updated_at :datetime        
-#  owner_id   :integer(11)     
-#  author     :string(255)     
-#  title      :string(255)     
-#  isbn       :string(255)     
-#  print      :string(255)     
-#  content    :text            
-#  version    :integer(11)     
-#  user_id    :integer(11)     
+#  id             :integer(11)     not null, primary key
+#  description_id :integer(11)     
+#  quantity       :integer(11)     
+#  author         :string(255)     
+#  title          :string(255)     
+#  isbn           :string(255)     
+#  print          :string(255)     
+#  description    :text            
+#  version        :integer(11)     
+#  user_id        :integer(11)     
+#  owner_id       :integer(11)     
+#  created_at     :datetime        
+#  updated_at     :datetime        
 #
 
 class Book < ActiveRecord::Base
@@ -63,12 +64,10 @@ class Book < ActiveRecord::Base
   
   def requested?
     statuses.detect { |s| !s.request.nil? }
-    
-    
   end
  
-#  named_scope 
-  def first_available
+  # Zwraca obkiet Loan dla ksiązki najwcześcniej dostępnej do wypożyczenia
+  def first_free_for_loan
     current = nil
     statuses.each {|s|
       logger.debug ">> first_available"

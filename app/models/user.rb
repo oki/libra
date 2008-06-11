@@ -1,3 +1,18 @@
+# == Schema Information
+# Schema version: 20080611174856
+#
+# Table name: users
+#
+#  id                        :integer(11)     not null, primary key
+#  login                     :string(255)     
+#  email                     :string(255)     
+#  salt                      :string(40)      
+#  remember_token            :string(255)     
+#  remember_token_expires_at :datetime        
+#  created_at                :datetime        
+#  updated_at                :datetime        
+#
+
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
