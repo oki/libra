@@ -1,0 +1,10 @@
+* pobieranie stanu i podstawowych informcji o ksiazkach
+* troche routes
+* podstawy widokow
+--Ta linia i nastêpne zostan± zignorowane--
+
+M    app/models/book.rb
+M    app/controllers/books_controller.rb
+M    app/views/books/_book_list.html.erb
+_M   config
+M    config/routes.rb

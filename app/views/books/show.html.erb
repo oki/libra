@@ -1,3 +1,6 @@
+<%- if flash[:notice] %>
+<h3><%= flash[:notice] %></h3>
+<%- end %>
 
 <table>
   <tr>
@@ -12,7 +15,7 @@
   
   <tr>
     <td>Opis:</td>
-    <td><%= @book.content %></td>
+    <td><%= @book.description %></td>
   </tr>
 </table>
 
@@ -23,15 +26,19 @@
   <tr>
     <td>Lp.</td>
     <td>stan</td>
+    <td>akcja</td>
   </tr>
   
   <% for s in @book.statuses %>
     <tr>
       <td>1</td>
       <td><%= s.loan.nil? ? "wolna" : "wypozyczona" %></td>
+      <td><%= !s.loan.nil? && s.loan.user == @user ? (link_to "zwroc", book_loan_path(@book, s.loan), :method => :delete) : (link_to "zarezerwuj", request_book_path(@book)) %></td>
     </tr>        
   <% end %>
 </table>
+
+
 
 <br />
 

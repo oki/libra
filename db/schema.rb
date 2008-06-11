@@ -9,31 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080605111852) do
+ActiveRecord::Schema.define(:version => 20080611130659) do
 
   create_table "books", :force => true do |t|
-    t.integer  "quantity",   :limit => 11
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "owner_id",   :limit => 11
+    t.integer  "description_id", :limit => 11
+    t.integer  "quantity",       :limit => 11
     t.string   "author"
     t.string   "title"
     t.string   "isbn"
     t.string   "print"
-    t.text     "content"
-    t.integer  "version",    :limit => 11
-    t.integer  "user_id",    :limit => 11
-  end
-
-  create_table "description_versions", :force => true do |t|
-    t.integer  "description_id", :limit => 11
+    t.text     "description"
     t.integer  "version",        :limit => 11
     t.integer  "user_id",        :limit => 11
-    t.string   "author"
-    t.string   "title"
-    t.string   "isbn"
-    t.string   "print"
-    t.text     "content"
+    t.integer  "owner_id",       :limit => 11
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,14 +36,9 @@ ActiveRecord::Schema.define(:version => 20080605111852) do
     t.datetime "updated_at"
   end
 
-  create_table "owners", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "requests", :force => true do |t|
     t.integer  "user_id",     :limit => 11
+    t.integer  "book_id",     :limit => 11
     t.datetime "date_issued"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -71,6 +54,10 @@ ActiveRecord::Schema.define(:version => 20080605111852) do
 
   create_table "users", :force => true do |t|
     t.string   "login"
+    t.string   "email"
+    t.string   "salt",                      :limit => 40
+    t.string   "remember_token"
+    t.datetime "remember_token_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -28,6 +28,7 @@ class BooksController < ApplicationController
   end
   
   def show
+    # @user = User.first
     @book = Book.find(params[:id], :include => [:statuses])
   end
   
@@ -42,13 +43,7 @@ class BooksController < ApplicationController
     end
   
     render :action => "index"    
-  end
-  
-
-  def loan
-    @book = Book.find(params[:id])
-    render :text => @book.id
-  end
+  end  
 
   def loaned
     @book = Book.loaned  
