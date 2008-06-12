@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :books,
         :collection => {  :search => :post,
+                          :search => :get,
                           :loaned => :get,
                           :requested => :get,
                           :available => :get

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
@@ -8,12 +8,37 @@
     <%= javascript_include_tag 'prototype' %>
     <%= stylesheet_link_tag 'style', :media => 'all' %>
   </head>
-
+  
   <body>
-    <h1>BIBLIOTEKA</h1>
-    <hr />
-
-    <%= yield %>
-
+    <div id="bar_left">
+      <%= link_to "Start", books_path %> - <%= link_to "Lista książek", books_path %> - <%= link_to "Szukaj", search_books_path %>
+    </div>
+    <div class="bar_underline"></div>
+    <div class="bar_underline"></div>
+    
+    <div id="bar_right">
+      Zalogowany jako <b>kuba</b> | Moje konto | Wyloguj<span style="padding-left: 10px"></span>
+    </div>
+    
+    <div id="Container">
+      <div id="Header">
+        <div id="Logo">
+          <h1>BIBLIOTEKA</h1>
+        </div>
+        
+        <div id="StatusBox">
+          Status
+        </div>
+      </div>
+      
+      
+      <div id="Menu">menu</div>
+      <div id="Content">
+        <%= yield %>
+      </div>
+      
+      
+    </div>
+    
   </body>
 </html>
