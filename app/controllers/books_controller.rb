@@ -27,9 +27,9 @@ class BooksController < ApplicationController
     end
   end
   
+  
   def show
-    # @user = User.first
-    @book = Book.find(params[:id], :include => [:statuses])
+    @book = Book.find(params[:id], :include => [:statuses, :owner, :user, :loans, :requests])
   end
   
   def search
