@@ -2,7 +2,7 @@ class LoansController < ApplicationController
   before_filter :login_required
   
   def destroy
-    user = User.first
+    user = current_user
     @book = Book.find(params[:book_id])
     loan = Loan.find(params[:id])
 
@@ -20,7 +20,7 @@ class LoansController < ApplicationController
   end
 
   def create
-    user = User.first
+    user = current_user
     @book = Book.find(params[:book_id])
     status = @book.available?
 

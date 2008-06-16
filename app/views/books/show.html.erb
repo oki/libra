@@ -37,7 +37,7 @@
     <% for s in @book.statuses %>
       <tr>
         <td><%= counter %></td>
-        <td><%= s.loan.nil? ? (link_to "<b>wypożycz</b>", book_loans_path(@book), :method => :post) : s.loan.user == @user ? (link_to "zwroc", book_loan_path(@book, s.loan), :method => :delete) : "wypożyczona" %></td>
+        <td><%= s.loan.nil? ? (link_to "<b>wypożycz</b>", book_loans_path(@book), :method => :post) : (s.loan.user == @user ? (link_to "zwroc", book_loan_path(@book, s.loan), :method => :delete) : "wypożyczona (#{s.loan.user.login})") %></td>
       </tr>        
       <% counter += 1 %>
     <% end %>

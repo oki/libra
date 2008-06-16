@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   end
   
   def create
-    user = User.first
+    user = current_user
     @book = Book.new(params[:book])
     @book.user = user
     @book.save
@@ -32,7 +32,7 @@ class BooksController < ApplicationController
   def show
     # TODO owners
     @book = Book.find(params[:id], :include => [:statuses, :user, :loans, :requests])
-    @user = User.first
+    @user = current_user
   end
   
   def edit
@@ -64,6 +64,5 @@ class BooksController < ApplicationController
   def loaned
     @book = Book.loaned  
   end
-  
   
 end
