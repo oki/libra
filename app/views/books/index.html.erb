@@ -1,13 +1,13 @@
  <%= "szukasz: - '" + params[:query][:keyword] + "'" if params[:query] %>
-<table border="1">
+<div id="BooksList">
+<table>
   <thead>
     <tr>
       <td>Lp.</td>
       <td>Tytul</td>
       <td>Autor</td>
-      <td>Data zwrotu</td>
-      <td>Dostepna</td>
-      <td colspan="3">dostepne dla admina</td>
+      <td>Dostępna / Data zwrotu</td>
+      <td colspan="2">dostepne dla admina</td>
     </tr>
   </thead>
   
@@ -15,3 +15,4 @@
     <%= render :partial => 'book_list', :collection => @books %>
   </tbody>
 </table>
+</div>

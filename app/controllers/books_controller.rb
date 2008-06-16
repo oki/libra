@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_filter :login_required
   
   def index
     @books = Book.all(:include => :statuses)
@@ -57,7 +58,7 @@ class BooksController < ApplicationController
       format.xml { render :xml => @books.to_xml }
     end
   
-    render :action => "index"    
+    render :action => "index"
   end  
 
   def loaned

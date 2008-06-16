@@ -81,8 +81,19 @@ A:HOVER {
 
 #BookDescription table {
     text-align: left;
+    margin: 0px;
 }
 
 #TinySearchForm {
     text-align: right;
+}
+
+#BooksList table {
+    border-collapse: collapse;
+    border-top: hidden;
     
+}
+
+#BooksList tr {
+    border-top: 1px solid #CCCCCC;
+}

@@ -16,22 +16,30 @@
       <td>Opis:</td>
       <td><%= @book.description %></td>
     </tr>
+    
+    <tr>
+      <td colspan="2">
+        <%= link_to "edytuj", edit_book_path(@book) %>
+      </td>
+    </tr>
   </table>
       
   <hr />
       
   <i>Egzemplarze</i>
-  <table border="1">
+  <table>
     <tr>
       <td>Lp.</td>
       <td>stan</td>
     </tr>
         
+    <% counter = 1 %>
     <% for s in @book.statuses %>
       <tr>
-        <td>1</td>
-        <td><%= s.loan.nil? ? (link_to "wypożycz", book_loans_path(@book), :method => :post) : s.loan.user == @user ? (link_to "zwroc", book_loan_path(@book, s.loan), :method => :delete) : "wypożyczona" %></td>
+        <td><%= counter %></td>
+        <td><%= s.loan.nil? ? (link_to "<b>wypożycz</b>", book_loans_path(@book), :method => :post) : s.loan.user == @user ? (link_to "zwroc", book_loan_path(@book, s.loan), :method => :delete) : "wypożyczona" %></td>
       </tr>        
+      <% counter += 1 %>
     <% end %>
   </table>
       
@@ -41,10 +49,6 @@
       
   <i>Historia:</i>
   <table>
-    <tr>
-      <td>Wypozyczenia</td>
-    </tr>
-        
     <tr>
       <td>
         <% for loan in @book.loans %>

@@ -1,4 +1,6 @@
 class LoansController < ApplicationController
+  before_filter :login_required
+  
   def destroy
     user = User.first
     @book = Book.find(params[:book_id])

@@ -17,7 +17,13 @@
             <%= link_to "Start", books_path %> - <%= link_to "Lista książek", books_path %> - <%= link_to "Szukaj", search_books_path %>
           </td>
           <td align="right">
-            <span>Zalogowany jako <b>kuba</b> | Moje konto | Wyloguj</span>
+            <span>
+              <% if current_user -%>
+                Zalogowany jako <b><%= current_user.login %></b> | Moje konto | <%= link_to 'Wyloguj', '/logout' %>
+              <% else -%>
+                <%= link_to 'Zaloguj', '/login' %>
+              <% end -%>
+            </span>
           </td>
         </tr>
       </table>
@@ -45,14 +51,14 @@
       <table width="100%" cellspacing="4px" border="0">
         <tr>
           <td width="150px" valign="top">
-            <%= link_to "szukaj", search_books_path %><br>
-            <a href="">moje konto</a><br>
-            <%= link_to "lista książek", books_path %><br>
-            <%= link_to "dodaj książkę", new_book_path %><br><br>
+            <%= link_to "szukaj", search_books_path %><br />
+            <a href=""><s>moje konto</s></a><br />
+            <%= link_to "lista książek", books_path %><br />
+            <%= link_to "dodaj książkę", new_book_path %><br /><br />
             
-            <a href="">Konfiguracja</a><br>
-            <a href="">Statystyki</a><br>
-            <a href="">Ankieta</a><br><br>
+            <a href=""><s>Konfiguracja</s></a><br />
+            <a href=""><s>Statystyki</s></a><br />
+            <a href=""><s>Ankieta</s></a><br/><br />
           </td>
           <td align="left" valign="top">
               <div id="TinySearchForm">
