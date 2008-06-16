@@ -7,6 +7,4 @@ class ApplicationController < ActionController::Base
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '566be474e4db8b75878c68061d23f063'
-
-  # test
 end
