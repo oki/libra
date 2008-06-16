@@ -1,44 +1,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Biblioteka</title>
     <%= javascript_include_tag 'prototype' %>
-    <%= stylesheet_link_tag 'style', :media => 'all' %>
+    <%= stylesheet_link_tag 'new', :media => 'all' %>
   </head>
   
   <body>
-    <div id="bar_left">
-      <%= link_to "Start", books_path %> - <%= link_to "Lista książek", books_path %> - <%= link_to "Szukaj", search_books_path %>
+    <div id="up">
+      <table width="100%">
+        <tr>
+          <td width="30%">
+            <%= link_to "Start", books_path %> - <%= link_to "Lista książek", books_path %> - <%= link_to "Szukaj", search_books_path %>
+          </td>
+          <td align="right">
+            <span>Zalogowany jako <b>kuba</b> | Moje konto | Wyloguj</span>
+          </td>
+        </tr>
+      </table>
     </div>
-    <div class="bar_underline"></div>
-    <div class="bar_underline"></div>
-    
-    <div id="bar_right">
-      Zalogowany jako <b>kuba</b> | Moje konto | Wyloguj<span style="padding-left: 10px"></span>
+    <div id="up2">
+      <table width="100%">
+        <tr>
+          <td width="25%">
+            <h1>Biblioteka</h1>
+          </td>
+          <td width="50%" align="center">
+            <div id="InfoBox">
+              <%- if flash[:notice] %>
+                <h3><%= flash[:notice] %></h3>
+              <%- end %>    
+            </div>
+          </td>
+          <td width="25%">
+          </td>
+        </tr>
+      </table>
     </div>
     
-    <div id="Container">
-      <div id="Header">
-        <div id="Logo">
-          <h1>BIBLIOTEKA</h1>
-        </div>
-        
-        <div id="StatusBox">
-          Status
-        </div>
-      </div>
-      
-      
-      <div id="Menu">menu</div>
-      <div id="Content">
-        <%= yield %>
-      </div>
-      
-      
+    <div id="main">
+      <table width="100%" cellspacing="4px" border="0">
+        <tr>
+          <td width="150px" valign="top">
+            <%= link_to "szukaj", search_books_path %><br>
+            <a href="">moje konto</a><br>
+            <%= link_to "lista książek", books_path %><br>
+            <%= link_to "dodaj książkę", new_book_path %><br><br>
+            
+            <a href="">Konfiguracja</a><br>
+            <a href="">Statystyki</a><br>
+            <a href="">Ankieta</a><br><br>
+          </td>
+          <td align="left" valign="top">
+              <div id="TinySearchForm">
+                <% form_for :query, :url => search_books_path do |f| %>
+                  <%= f.text_field :keyword %>
+                  <%= f.submit "szukaj" %>
+                <% end %>
+              </div>
+              
+            <span>
+              <%= yield %>
+            </span>
+          </td>
+        </tr>
+      </table>
     </div>
     
+    <div id="down"><span>Copyright: Kei.pl 2000 - 2008</span>
+    </div>		
   </body>
 </html>

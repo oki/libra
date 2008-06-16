@@ -29,7 +29,22 @@ class BooksController < ApplicationController
   
   
   def show
-    @book = Book.find(params[:id], :include => [:statuses, :owner, :user, :loans, :requests])
+    # TODO owners
+    @book = Book.find(params[:id], :include => [:statuses, :user, :loans, :requests])
+    @user = User.first
+  end
+  
+  def edit
+    @book = Book.find(params[:id])
+  end
+  
+  def update
+    Book.update(params[:id], params[:book])
+    @book = Book.find(params[:id])
+    
+    flash[:notice] = "Zaktualizowano"
+    
+    redirect_to :action => :show, :id => @book
   end
   
   def search

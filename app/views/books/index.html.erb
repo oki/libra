@@ -1,14 +1,4 @@
-<h1>Books</h1>
-
-<h3>Szukarka <%= "- '" + params[:query][:keyword] + "'" if params[:query] -%></h3>
-
-<% form_for :query, :url => search_books_path do |f| %>
-  <%= f.text_field :keyword %>
-<% end %>
-
-<%= link_to "pokaz wszystkie", :action => "index" %>
-
-<hr />
+ <%= "szukasz: - '" + params[:query][:keyword] + "'" if params[:query] %>
 <table border="1">
   <thead>
     <tr>
@@ -25,7 +15,3 @@
     <%= render :partial => 'book_list', :collection => @books %>
   </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New book', new_book_path %>

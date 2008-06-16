@@ -1,75 +1,60 @@
-<%- if flash[:notice] %>
-<h3><%= flash[:notice] %></h3>
-<%- end %>
-
-<table>
-  <tr>
-    <td>Tytuł:</td>
-    <td><%= @book.title %></td>
-  </tr>
-  
-  <tr>
-    <td>Autor:</td>
-    <td><%= @book.author %></td>
-  </tr>
-  
-  <tr>
-    <td>Opis:</td>
-    <td><%= @book.description %></td>
-  </tr>
-</table>
-
-<hr />
-
-<i>Egzemplarze</i>
-<table border="1">
-  <tr>
-    <td>Lp.</td>
-    <td>stan</td>
-    <td>akcja</td>
-  </tr>
-  
-  <% for s in @book.statuses %>
-    <tr>
-      <td>1</td>
-      <td><%= s.loan.nil? ? "wolna" : "wypozyczona" %></td>
-      <td><%= !s.loan.nil? && s.loan.user == @user ? (link_to "zwroc", book_loan_path(@book, s.loan), :method => :delete) : (link_to "zarezerwuj", request_book_path(@book)) %></td>
-    </tr>        
-  <% end %>
-</table>
-
-
-
-<br />
-
-<i>Historia:</i>
-<table>
-  <tr>
-    <td>Wypozyczenia</td>
-    <td>Zamowienia</td>
-  </tr>
-  
-  <tr>
-    <td>
-      <% for loan in @book.loans %>
-        wypozyczone: <%= loan.created_at %><br />
-        oddane: <%= loan.date_returned %><br />
-        user: <%= loan.user.login %>
-        <hr />
-      <% end %>
-    </td>
+<div id="BookDescription">
     
-    <td>
-      <% for request in @book.requests %>
-        data: <%= request.created_at %><br />
-        user: <%= request.user.login %>
-        <hr />           
+    
+  <table>
+    <tr>
+      <td>Tytuł:</td>
+      <td><%= @book.title %></td>
+    </tr>
+        
+    <tr>
+      <td>Autor:</td>
+      <td><%= @book.author %></td>
+    </tr>
+        
+    <tr>
+      <td>Opis:</td>
+      <td><%= @book.description %></td>
+    </tr>
+  </table>
       
-      <% end %>
-    </td>
-  </tr>
-</table>
-
-<hr />
-
-<%= link_to "wróc do listy", :action => "index" %>
+  <hr />
+      
+  <i>Egzemplarze</i>
+  <table border="1">
+    <tr>
+      <td>Lp.</td>
+      <td>stan</td>
+    </tr>
+        
+    <% for s in @book.statuses %>
+      <tr>
+        <td>1</td>
+        <td><%= s.loan.nil? ? (link_to "wypożycz", book_loans_path(@book), :method => :post) : s.loan.user == @user ? (link_to "zwroc", book_loan_path(@book, s.loan), :method => :delete) : "wypożyczona" %></td>
+      </tr>        
+    <% end %>
+  </table>
+      
+      
+      
+  <br />
+      
+  <i>Historia:</i>
+  <table>
+    <tr>
+      <td>Wypozyczenia</td>
+    </tr>
+        
+    <tr>
+      <td>
+        <% for loan in @book.loans %>
+          wypozyczone: <%= loan.created_at %><br />
+          oddane: <%= loan.date_returned %><br />
+          user: <%= loan.user.login %>
+          <hr />
+        <% end %>
+      </td>
+    </tr>
+  </table>
+      
+</div>
