@@ -1,0 +1,88 @@
+html * { 
+	margin: 0 auto;
+	padding: 0;
+}
+BODY {
+	background-color: #FFFFFF;
+	text-align: center;
+	margin: 0 auto;
+	width: 100%;
+}
+#up {
+	background-color: #FFFFFF;
+	height: 20px;
+	width: 100%;
+	text-align: left;
+	padding: 2px;	
+	border-bottom: 1px solid #CCCCCC;
+}
+#up2 {
+	background-color: #FFFFFF;
+	height: 38px;
+	width: 960px;
+	text-align: left;
+	padding: 2px;
+}
+#main {
+	background-color: #FFFFFF;
+	height: auto;
+	width: 960px;
+	text-align: left;
+	padding: 5px;	
+	border-left: 1px solid #CCCCCC;
+	border-top: 1px solid #CCCCCC;
+}
+span {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 11px;
+	text-align: left;
+	padding: 2px;
+}
+h1 {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 24px;
+	color: #000000;
+	padding: 4px;
+}
+#down {
+	background-color: #FFFFFF;
+	height: 20px;
+	width: 100%;
+	text-align: center;
+}
+A:LINK {
+	font-family: Verdana, Arial, Helvetica;
+	text-decoration: none;
+	font-size: 11px;
+	color: #000000;
+}
+A:VISITED {
+	font-family: Verdana, Arial, Helvetica;
+	text-decoration: none;
+	font-size: 11px;
+	color: #000000;
+}
+A:ACTIVE {
+	font-family: Verdana, Arial, Helvetica;
+	text-decoration: none;
+	font-size: 11px;
+	color: #000000;
+}
+A:HOVER {
+	font-family: Verdana, Arial, Helvetica;
+	text-decoration: underline;
+	font-size: 11px;
+	color: #FF0000;
+}
+
+#BookDescription {
+    text-align: left;
+}
+
+#BookDescription table {
+    text-align: left;
+}
+
+#TinySearchForm {
+    text-align: right;
+    

@@ -1,0 +1,27 @@
+<h1>edycja ksiazki</h1>
+
+<div id="BookForm">
+  <%= error_messages_for :book %>
+  
+  <% form_for :book, @book,:url => book_path(@book), :html => { :method => :put} do |f| %>
+    <table>
+      <tr>
+        <td><%= f.label 'Tytuł' %></td>
+        <td><%= f.text_field :title %></td>
+      </tr>
+    
+      <tr>
+        <td><%= f.label 'Autor' %></td>
+        <td><%= f.text_field :author %></td>
+      </tr>
+      
+      <tr>
+        <td><%= f.label 'opis' %></td>
+        <td><%= f.text_area :description %></td>
+      </tr>
+    </table>
+    <%= f.submit "Dodaj" %>
+  
+  <% end %>
+    
+</div>
