@@ -28,7 +28,7 @@ class Book < ActiveRecord::Base
 #  has_many :loans, :through => :statuses
 #  has_many :requests, :through => :statuses
 
-  named_scope :available, :include => :statuses, :conditions => { 'statuses.loan_id' => nil }
+  named_scope :available, :include => :statuses, :conditions => [ 'statuses.loan_id IS NULL' ]
   named_scope :loaned, :include => :statuses, :conditions => ['statuses.loan_id IS NOT NULL']
   named_scope :loaned_by_user, lambda { |*args| { :include => :loans, :conditions => ["loans.user_id = ?", (args.first || 1)], :order => "loans.date_due_for_return"} }
   

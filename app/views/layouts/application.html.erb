@@ -13,57 +13,97 @@
     <div id="top-menu">
       <div id="account">
         <% if current_user -%>
-          Zalogowany jako <b><%= current_user.login %></b> | <%= link_to 'Moje konto', :controller => "account" %>| <%= link_to 'Wyloguj', '/logout' %>
+          Zalogowany jako <b><%= current_user.login %></b> | <%= link_to 'Moje konto', :controller => "account" %> | <%= link_to 'Wyloguj', '/logout' %>
         <% else -%>
           <%= link_to 'Zaloguj', '/login' %>
         <% end -%>
       </div>
       
-      <%= link_to "Start", books_path %> - <%= link_to "Lista książek", books_path %> - <%= link_to "Szukaj", search_books_path %>
+      <span><%= link_to "Start", books_path %></span>
+      <span><%= link_to "Lista książek", books_path %></span>
+      <span><%= link_to "Szukaj", search_books_path %></span>
     </div>
     
     <div id="container">
       <div id="header">       
-        <%- if flash[:notice] %>
-          <div id="InfoBox">
-            <span id="InfoBoxContent"><%= flash[:notice] %></span>
-          </div>
-        <%- end %>    
+        <div id="header-content">
+          <%- if flash[:notice] %>
+            <div id="InfoBox">
+              <span id="InfoBoxContent"><%= flash[:notice] %></span>
+            </div>
+          <%- end %>    
           
-        <%= link_to "Biblioteka", :action => "index" %>
-      </div>
+          <%= link_to image_tag("bib_logo_trans.png", :border => 0), :action => "index" %>
+        </div>
+      </div> <!-- header end -->
       
       <div id="main">
-        <table width="100%" cellspacing="4px" border="0">
-          <tr>
-            <td width="150px" valign="top">
-              <%= link_to "szukaj", search_books_path %><br />
-              <%= link_to "moje konto", :controller => "account" %><br />
-              <%= link_to "lista książek", books_path %><br />
-              <%= link_to "dodaj książkę", new_book_path %><br /><br />
-              
-              <a href=""><s>Konfiguracja</s></a><br />
-              <a href=""><s>Statystyki</s></a><br />
-              <a href=""><s>Ankieta</s></a><br/><br />
-            </td>
-            <td align="left" valign="top">
-              <div id="TinySearchForm">
-                <% form_for :query, :url => search_books_path do |f| %>
-                  <%= f.text_field :keyword %>
-                  <%= f.submit "szukaj" %>
-                <% end %>
-              </div>
-              
-              <span>
-                <%= yield %>
-              </span>
-            </td>
-          </tr>
-        </table>
-      </div>
+        <b class="corners">
+          <b class="corners1"><b></b></b>
+          <b class="corners2"><b></b></b>
+          <b class="corners3"></b>
+          <b class="corners4"></b>
+        <b class="corners5"></b></b>
+        
+        <div class="cornersfg">
+          <table width="100%" cellspacing="4px" border="0">
+            <tr>
+              <td width="150px" valign="top">
+                <%= link_to "szukaj", search_books_path %><br />
+                <%= link_to "moje konto", :controller => "account" %><br />
+                <%= link_to "lista książek", books_path %><br />
+                <%= link_to "dodaj książkę", new_book_path %><br /><br />
+                
+                <a href="">Konfiguracja</a><br />
+                <a href="">Statystyki</a><br />
+                <a href="">Ankieta</a><br/><br />
+              </td>
+              <td align="left" valign="top">
+                <div id="TinySearchForm">
+                  <% form_for :query, :url => search_books_path do |f| %>
+                    <%= f.text_field :keyword %>
+                    <%= f.submit "szukaj" %>
+                  <% end %>
+                </div>
+                
+                <span>
+                  <%= yield %>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div> <!-- cornersfg end -->
+        
+        <b class="corners">
+          <b class="corners5"></b>
+          <b class="corners4"></b>
+          <b class="corners3"></b>
+          <b class="corners2"><b></b></b>
+        <b class="corners1"><b></b></b></b>
+        
+      </div> <!-- main end -->
       
-      <div id="down"><span>Copyright: Kei.pl 2000 - 2008</span>
-      </div>		
-    </div>
+      <!-- footer start -->
+      <div id="footer">
+        <b class="corners">
+          <b class="corners1"><b></b></b>
+          <b class="corners2"><b></b></b>
+          <b class="corners3"></b>
+          <b class="corners4"></b>
+        <b class="corners5"></b></b>
+        
+        <div class="cornersfg">
+          <span>Copyright: Kei.pl 2008</span>
+        </div>
+        
+        <b class="corners">
+          <b class="corners5"></b>
+          <b class="corners4"></b>
+          <b class="corners3"></b>
+          <b class="corners2"><b></b></b>
+        <b class="corners1"><b></b></b></b>        
+      </div> <!-- footer end -->
+      
+    </div> <!-- containter end -->
   </body>
 </html>
