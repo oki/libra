@@ -14,7 +14,7 @@ class LoansController < ApplicationController
       loan.save
     end
 
-    flash[:notice] = "Ksiazka oddana"
+    flash[:notice] = "książka oddana"
 
     redirect_to :controller => :books, :action => :show, :id => @book
   end
@@ -28,7 +28,7 @@ class LoansController < ApplicationController
     status.loan = loan
     status.save
 
-    flash[:notice] = "Ksiazka wypozyczona"
+    flash[:notice] = "książka wypożyczona"
 
     redirect_to :controller => :books, :action => :show, :id => @book
   end

@@ -3,11 +3,10 @@
 <table>
   <thead>
     <tr>
-      <td>Lp.</td>
-      <td>Tytul</td>
-      <td>Autor</td>
-      <td>Dostępna / Data zwrotu</td>
-      <td colspan="2">dostepne dla admina</td>
+      <td width="25px" style="text-align: center;">Lp.</td>
+      <td><%= link_to "Tytuł", :order => "title" %></td>
+      <td><%= link_to "Autor", :order => 'author' %></td>
+      <td width="150px">Dostępna / Data zwrotu</td>
     </tr>
   </thead>
   

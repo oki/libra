@@ -2,7 +2,9 @@ class BooksController < ApplicationController
   before_filter :login_required
   
   def index
-    @books = Book.all(:include => :statuses)
+    order = proper_order(params[:order])
+    @books = Book.all(:include => :statuses, :order => order)
+    
     
     respond_to do |format|
       format.html { render :partial => 'book_list', :collection => @books if request.xhr?}
@@ -49,9 +51,10 @@ class BooksController < ApplicationController
   end
   
   def search
-    conditions = ["title LIKE ?", "%#{params[:query][:keyword]}%"] unless params[:query].nil?
+    order = proper_order(params[:order])
+    conditions = ["title LIKE ? || author LIKE ?", "%#{params[:query][:keyword]}%", "%#{params[:query][:keyword]}%"] unless params[:query].nil?
     
-    @books = Book.all(:include => :statuses, :conditions => conditions)
+    @books = Book.all(:include => :statuses, :conditions => conditions, :order => order)
     
     respond_to do |format|
       format.html { render :partial => 'book_list', :collection => @books if request.xhr?}
@@ -63,6 +66,20 @@ class BooksController < ApplicationController
 
   def loaned
     @book = Book.loaned  
+  end
+  
+  protected
+  def proper_order(order)
+    case order
+    when 'title'
+      'title'
+    when 'author'
+      'author'
+    when 'available'
+      'available'
+    else
+      'title'
+    end
   end
   
 end

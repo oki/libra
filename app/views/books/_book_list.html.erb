@@ -1,8 +1,6 @@
 <tr>
-  <td><%= book_list_counter %></td>
+  <td style="text-align: center;"><%= book_list_counter %></td>
   <td><%= link_to book_list.title, book_list %></td>
   <td><%= book_list.author %></td>
-  <td><%= book_list.available? ? "tak" : book_list.first_free_for_loan.date_due_for_return %></td>
-  <td><%= link_to 'Edit', edit_book_path(book_list) %></td>
-  <td><%= link_to 'Destroy', book_list, :confirm => 'Are you sure?', :method => :delete %></td>
+  <td style="text-align: center;"><%= book_list.available? ? "tak" : book_list.first_free_for_loan.date_due_for_return.strftime('%d-%m-%Y') %></td>
 </tr>
