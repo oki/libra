@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_filter :login_required
   # Be sure to include AuthenticationSystem in Application Controller instead
   # include AuthenticatedSystem
-  
+
+
+  def index
+    redirect_to :action => :show, :id => current_user
+  end
 
   # render new.rhtml
   def new
@@ -25,5 +29,11 @@ class UsersController < ApplicationController
       flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
       render :action => 'new'
     end
+  end
+  
+  def show
+    user = current_user
+    
+    render :text => user.login
   end
 end

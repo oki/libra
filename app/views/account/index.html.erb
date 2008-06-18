@@ -1,0 +1,5 @@
+<div>
+Ilość aktualnie wypożyczonych książek: <b><%= @books_for_return %></b>
+<br />
+Najwcześniej do zwrotu: <b><%= link_to @book_for_return.title, book_path(@book_for_return) %></b> (<%= @book_for_return.loans.first.date_due_for_return %>)
+</div>

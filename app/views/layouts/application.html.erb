@@ -10,57 +10,43 @@
   </head>
   
   <body>
-    <div id="up">
-      <table width="100%">
-        <tr>
-          <td width="30%">
-            <%= link_to "Start", books_path %> - <%= link_to "Lista książek", books_path %> - <%= link_to "Szukaj", search_books_path %>
-          </td>
-          <td align="right">
-            <span>
-              <% if current_user -%>
-                Zalogowany jako <b><%= current_user.login %></b> | Moje konto | <%= link_to 'Wyloguj', '/logout' %>
-              <% else -%>
-                <%= link_to 'Zaloguj', '/login' %>
-              <% end -%>
-            </span>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id="up2">
-      <table width="100%">
-        <tr>
-          <td width="25%">
-            <h1>Biblioteka</h1>
-          </td>
-          <td width="50%" align="center">
-            <div id="InfoBox">
-              <%- if flash[:notice] %>
-                <h3><%= flash[:notice] %></h3>
-              <%- end %>    
-            </div>
-          </td>
-          <td width="25%">
-          </td>
-        </tr>
-      </table>
+    <div id="top-menu">
+      <div id="account">
+        <% if current_user -%>
+          Zalogowany jako <b><%= current_user.login %></b> | <%= link_to 'Moje konto', :controller => "account" %>| <%= link_to 'Wyloguj', '/logout' %>
+        <% else -%>
+          <%= link_to 'Zaloguj', '/login' %>
+        <% end -%>
+      </div>
+      
+      <%= link_to "Start", books_path %> - <%= link_to "Lista książek", books_path %> - <%= link_to "Szukaj", search_books_path %>
     </div>
     
-    <div id="main">
-      <table width="100%" cellspacing="4px" border="0">
-        <tr>
-          <td width="150px" valign="top">
-            <%= link_to "szukaj", search_books_path %><br />
-            <a href=""><s>moje konto</s></a><br />
-            <%= link_to "lista książek", books_path %><br />
-            <%= link_to "dodaj książkę", new_book_path %><br /><br />
-            
-            <a href=""><s>Konfiguracja</s></a><br />
-            <a href=""><s>Statystyki</s></a><br />
-            <a href=""><s>Ankieta</s></a><br/><br />
-          </td>
-          <td align="left" valign="top">
+    <div id="container">
+      <div id="header">       
+        <%- if flash[:notice] %>
+          <div id="InfoBox">
+            <span id="InfoBoxContent"><%= flash[:notice] %></span>
+          </div>
+        <%- end %>    
+          
+        <%= link_to "Biblioteka", :action => "index" %>
+      </div>
+      
+      <div id="main">
+        <table width="100%" cellspacing="4px" border="0">
+          <tr>
+            <td width="150px" valign="top">
+              <%= link_to "szukaj", search_books_path %><br />
+              <%= link_to "moje konto", :controller => "account" %><br />
+              <%= link_to "lista książek", books_path %><br />
+              <%= link_to "dodaj książkę", new_book_path %><br /><br />
+              
+              <a href=""><s>Konfiguracja</s></a><br />
+              <a href=""><s>Statystyki</s></a><br />
+              <a href=""><s>Ankieta</s></a><br/><br />
+            </td>
+            <td align="left" valign="top">
               <div id="TinySearchForm">
                 <% form_for :query, :url => search_books_path do |f| %>
                   <%= f.text_field :keyword %>
@@ -68,15 +54,16 @@
                 <% end %>
               </div>
               
-            <span>
-              <%= yield %>
-            </span>
-          </td>
-        </tr>
-      </table>
+              <span>
+                <%= yield %>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div id="down"><span>Copyright: Kei.pl 2000 - 2008</span>
+      </div>		
     </div>
-    
-    <div id="down"><span>Copyright: Kei.pl 2000 - 2008</span>
-    </div>		
   </body>
 </html>
