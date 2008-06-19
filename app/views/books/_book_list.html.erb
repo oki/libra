@@ -1,6 +1,6 @@
-<tr>
+<tr class="row">
   <td style="text-align: center;"><%= book_list_counter %></td>
-  <td><%= link_to book_list.title, book_list %></td>
-  <td><%= book_list.author %></td>
+  <td><%= link_to shorten_name(book_list.title, 40), book_list %></td>
+  <td><%= shorten_name(book_list.author, 40) %></td>
   <td style="text-align: center;"><%= book_list.available? ? "tak" : book_list.first_free_for_loan.date_due_for_return.strftime('%d-%m-%Y') %></td>
 </tr>

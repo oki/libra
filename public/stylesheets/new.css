@@ -6,15 +6,26 @@ body {
     background-image: url("/images/bg.png");
 }
 
-#top-menu {
-    
+
+/* okragle pudelka */
+.corners{display:block}
+.corners *{ display:block; height:1px; overflow:hidden; font-size:.01em; background:#ffffff}
+.corners1{ margin-left:3px; margin-right:3px; padding-left:1px; padding-right:1px; border-left:1px solid #6d6d6d; border-right:1px solid #6d6d6d; background:#bfbfbf}
+.corners2{ margin-left:1px; margin-right:1px; padding-right:1px; padding-left:1px; border-left:1px solid #191919; border-right:1px solid #191919; background:#cecece}
+.corners3{ margin-left:1px; margin-right:1px; border-left:1px solid #cecece; border-right:1px solid #cecece;}
+.corners4{ border-left:1px solid #6d6d6d; border-right:1px solid #6d6d6d}
+.corners5{ border-left:1px solid #bfbfbf; border-right:1px solid #bfbfbf}
+.cornersfg{ background:#ffffff}
+/* *** */
+
+
+#top-menu {    
     text-align: left;
     color: #ffffff;
     height: 1.8em;
     padding: 2px 6px 0px;
     #    border-bottom: 2px solid #004fba;
     font-weight: bold; 
-    
 }
 
 #top-menu span {
@@ -40,15 +51,11 @@ body {
 }
 
 #container {
-    
     margin: 0 auto;
 }
 
 #header {
-    
     height: 5em;
-    
-    
 }
 
 #header-content {
@@ -72,12 +79,11 @@ body {
     margin-top: 5px;
     float: right;
     width: 300px;
-    height: 2.5em;
+    height: 1.4em;
     text-align: center;
     font-size: 14px;
-    border: 1px dashed #000000;
     vertical-align: middle;
-    line-height: 2.5em;
+    line-height: 1.4em;
 }
 
 #InfoBoxContent {
@@ -90,6 +96,7 @@ body {
     width: 960px;
     margin: 0 auto;
     display: block;
+    color: #ffffff;
 }
 
 #footer {
@@ -97,33 +104,90 @@ body {
     width: 960px;
     margin: 0 auto;
     text-align: center;
+    margin-bottom: 5px;
 }
 
-#BookDescription {
+#left-col {
     text-align: left;
+    color: #ffffff;
+    width: 940px;
+    padding: 2px 6px 0px;
+    margin: 0 auto;
+    font-weight: bold;
 }
 
-#BookDescription table {
-    text-align: left;
-    margin: 0px;
+#right-col {
+    float: right;
+    width: 800px;
+}
+
+#content {
+    padding-top: 35px;
+    color: #000000;
+}
+
+#content a {
+    color: #000000;
+}
+
+.odd {
+    background-color: #eeeeee;
 }
 
 #TinySearchForm {
+    width: 300px;
+    height: 25px;
+    float: right;
     text-align: right;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
 }
 
-#BooksList table {
+#TinySearchForm input.text {
+    width: 200px;
+    font-size: 10px;
+    line-height: 10px;
+    border: 1px solid #000000;
+    padding: 2px;    
+}
+
+#TinySearchForm input.button {
+    background-color: #eeeeee;
+    width: 60px;
+    height: 20px;
+    border: 1px solid #000000;
+    font-size: 10px;
+    letter-spacing: 2px;
     
 }
 
-#BooksList tr {
+#BooksList table {
+    width: 100%;   
 }
 
-.corners{display:block}
-.corners *{ display:block; height:1px; overflow:hidden; font-size:.01em; background:#ffffff}
-.corners1{ margin-left:3px; margin-right:3px; padding-left:1px; padding-right:1px; border-left:1px solid #6d6d6d; border-right:1px solid #6d6d6d; background:#bfbfbf}
-.corners2{ margin-left:1px; margin-right:1px; padding-right:1px; padding-left:1px; border-left:1px solid #191919; border-right:1px solid #191919; background:#cecece}
-.corners3{ margin-left:1px; margin-right:1px; border-left:1px solid #cecece; border-right:1px solid #cecece;}
-.corners4{ border-left:1px solid #6d6d6d; border-right:1px solid #6d6d6d}
-.corners5{ border-left:1px solid #bfbfbf; border-right:1px solid #bfbfbf}
-.cornersfg{ background:#ffffff}
+#BooksList a {
+    color: #000000; 
+    border-bottom: 1px dotted #000000;
+    text-decoration: none;
+}
+
+#BooksList tr.row:hover, #BooksList tr.row:hover a {
+    color: #ff43a7;
+    border-bottom: 1px dotted #ff43a7;
+    text-decoration: none;
+}
+
+a.menu-link {
+    color: #000000;
+    border-bottom: 1px dotted #000000;
+    text-decoration: none;
+    line-height: 20px;
+}
+
+a.menu-link:hover {
+    color: #000000;
+    border-bottom: 1px solid #000000;
+    text-decoration: none;
+}
+
+.pudelko-rozszerzacz { clear: both; }

@@ -1,59 +1,68 @@
 <div id="BookDescription">
-    
-    
+  
+  
   <table>
     <tr>
-      <td>Tytuł:</td>
-      <td><%= @book.title %></td>
+      <td width="50px">tytuł:</td>
+      <td style="font-size: 13px;" width="700px"><%= @book.title %></td>
     </tr>
-        
+    
     <tr>
-      <td>Autor:</td>
+      <td>autor:</td>
       <td><%= @book.author %></td>
     </tr>
     
     <tr>
-      <td colspan="2">
+      <td colspan="2" align="right">
         <%= link_to "edytuj", edit_book_path(@book) %>
       </td>
     </tr>
   </table>
-      
-  <hr />
-      
-  <i>Egzemplarze</i>
+  
+  <div style="height: 1px; margin-bottom: 10px; border-bottom: 1px solid #000000;"></div>
+  
+  <i>Dostępne egzemplarze</i>
   <table>
     <tr>
       <td>Lp.</td>
       <td>stan</td>
     </tr>
-        
+    
     <% counter = 1 %>
     <% for s in @book.statuses %>
       <tr>
         <td><%= counter %></td>
-        <td><%= s.loan.nil? ? (link_to "<b>wypożycz</b>", book_loans_path(@book), :method => :post) : (s.loan.user == @user ? (link_to "zwroc", book_loan_path(@book, s.loan), :method => :delete) : "wypożyczona (#{s.loan.user.login})") %></td>
+        <td><%= s.loan.nil? ? (link_to "<b>wypożycz</b>", book_loans_path(@book), :method => :post) : (s.loan.user == @user ? (link_to "oddaję książkę", book_loan_path(@book, s.loan), :method => :delete) : "wypożyczona (#{s.loan.user.login})") %></td>
       </tr>        
       <% counter += 1 %>
     <% end %>
   </table>
-      
-      
-      
-  <br />
-      
+  
+  <div style="height: 10px; margin-bottom: 10px; border-bottom: 1px solid #000000;"></div>
+  
   <i>Historia:</i>
   <table>
-    <tr>
-      <td>
-        <% for loan in @book.loans %>
-          wypozyczone: <%= loan.created_at %><br />
-          oddane: <%= loan.date_returned %><br />
-          user: <%= loan.user.login %>
-          <hr />
-        <% end %>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <td width="20px">#</td>
+        <td width="100px">użytkownik</td>
+        <td width="160px">data wypożyczenia</td>
+        <td width="160px">data oddania</td>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% counter = 1 -%>
+      <% for loan in @book.loans %>
+        <tr>
+          <td><%= counter %></td>
+          <td><%= loan.user.login %></td>
+          <td><%= loan.created_at.strftime('%d-%m-%Y') %></td>
+          <td><%= loan.date_returned.nil? ? " - " : loan.date_returned.strftime('%d-%m-%Y') %></td>
+        </tr>
+        <% counter += 1 -%>
+      <% end %>
+    </tbody>
   </table>
-      
+  
 </div>

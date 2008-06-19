@@ -1,17 +1,17 @@
- <%= "szukasz: - '" + params[:query][:keyword] + "'" if params[:query] %>
+<%= "szukasz: - '" + params[:query][:keyword] + "'" if params[:query] %>
 <div id="BooksList">
-<table>
-  <thead>
-    <tr>
-      <td width="25px" style="text-align: center;">Lp.</td>
-      <td><%= link_to "Tytuł", :order => "title" %></td>
-      <td><%= link_to "Autor", :order => 'author' %></td>
-      <td width="150px">Dostępna / Data zwrotu</td>
-    </tr>
-  </thead>
-  
-  <tbody id="TableBody">
-    <%= render :partial => 'book_list', :collection => @books %>
-  </tbody>
-</table>
+  <table>
+    <thead>
+      <tr>
+        <td width="25px" style="text-align: center;">Lp.</td>
+        <td><%= link_to "Tytuł", :order => "title" %></td>
+        <td><%= link_to "Autor", :order => 'author' %></td>
+        <td width="170px">Dostępna / Data zwrotu</td>
+      </tr>
+    </thead>
+    
+    <tbody id="TableBody">
+      <%= render :partial => 'book_list', :collection => @books %>
+    </tbody>
+  </table>
 </div>
