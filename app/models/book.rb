@@ -37,8 +37,6 @@ class Book < ActiveRecord::Base
   named_scope :due_for_return, :include => [ :statuses, :loans ], :conditions => ['statuses.loan_id IS NOT NULL']
   
   
-  
-  # 
   # select l.id "loan_id",b.id, b.title,s.updated_at, l.date_due_for_return 
   # from books b 
   # inner join statuses s on s.book_id = b.id 
