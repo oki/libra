@@ -21,24 +21,21 @@
   
   <div style="height: 1px; margin-bottom: 10px; border-bottom: 1px solid #000000;"></div>
   
-  <i>Dostępne egzemplarze</i>
-  <table>
-    <tr>
-      <td>Lp.</td>
-      <td>stan</td>
-    </tr>
-    
-    <% counter = 1 %>
-    <% for s in @book.statuses %>
-      <tr>
-        <td><%= counter %></td>
-        <td><%= s.loan.nil? ? (link_to "<b>wypożycz</b>", book_loans_path(@book), :method => :post) : (s.loan.user == @user ? (link_to "oddaję książkę", book_loan_path(@book, s.loan), :method => :delete) : "wypożyczona (#{s.loan.user.login})") %></td>
-      </tr>        
-      <% counter += 1 %>
-    <% end %>
-  </table>
+  <!-- TODO -->
+  <!-- MEGA SYF START -->
+  Dostępne egzemplarze: <%= @free %>/<%= @book.quantity %><br/>
+  <%= link_to_if(!@av.nil?, '<span>wypożycz</span>', book_loans_path(@book), :method => :post, :class => 'button') do
+    "Kogo ścigać? #{@book.first_free_for_loan.user.login}"
+  end %>
+
+
+  <% if loan = @book.loaned_by_user?(current_user) -%>
+    <%= link_to '<span>zwróć</span>', book_loan_path(@book, loan.loan), :method => :delete, :class => 'button' %>
+  <% end %>
+  <br/><br/>
+  <!-- MEGA SYF END -->
   
-  <div style="height: 10px; margin-bottom: 10px; border-bottom: 1px solid #000000;"></div>
+  <div style="height:= 10px; margin-bottom: 10px; border-bottom: 1px solid #000000;"></div>
   
   <i>Historia:</i>
   <table>
@@ -47,18 +44,20 @@
         <td width="20px">#</td>
         <td width="100px">użytkownik</td>
         <td width="160px">data wypożyczenia</td>
-        <td width="160px">data oddania</td>
+        <td width="180px">przewidywana data zwrotu</td>
+        <td width="160px">data zwrotu</td>
       </tr>
     </thead>
     
     <tbody>
       <% counter = 1 -%>
-      <% for loan in @book.loans %>
+      <% for l in @loan_history %>
         <tr>
           <td><%= counter %></td>
-          <td><%= loan.user.login %></td>
-          <td><%= loan.created_at.strftime('%d-%m-%Y') %></td>
-          <td><%= loan.date_returned.nil? ? " - " : loan.date_returned.strftime('%d-%m-%Y') %></td>
+          <td><%= l.user.login %></td>
+          <td><%= l.created_at.strftime('%d-%m-%Y') %></td>
+          <td><%= l.date_due_for_return.strftime('%d-%m-%Y') %></td>
+          <td><%= l.date_returned.nil? ? " - " : l.date_returned.strftime('%d-%m-%Y') %></td>
         </tr>
         <% counter += 1 -%>
       <% end %>

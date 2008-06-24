@@ -15,4 +15,7 @@ class Status < ActiveRecord::Base
   belongs_to :book
   belongs_to :loan
   belongs_to :request
+  
+  # TODO
+  named_scope :dupa, :conditions => ['loan_id IS NULL']
 end

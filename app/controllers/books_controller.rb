@@ -34,7 +34,12 @@ class BooksController < ApplicationController
   def show
     # TODO owners
     @book = Book.find(params[:id], :include => [:statuses, :user, :loans, :requests])
-    @user = current_user
+    @loan_history = Loan.find_all_by_book_id(@book, :include => :user)
+    @free = @book.statuses.dupa.count
+    @av = @book.available?
+    logger.debug "O TO CO?> #{@av.inspect}"
+#  rescue
+#    redirect_to :action => "index"
   end
   
   def edit

@@ -1,7 +1,20 @@
-<div>
-Ilość aktualnie wypożyczonych książek: <b><%= @books_for_return %></b>
-<br />
-<% if @book_for_return %>
-Najwcześniej do zwrotu: <b><%= link_to @book_for_return.title, book_path(@book_for_return) %></b> (<%= @book_for_return.loans.first.date_due_for_return %>)
-<% end %>
+<div> 
+  <% if @book %>
+    Najwcześniej do zwrotu: <%= link_to shorten_name(@book.title, 80), @book %>
+    <br/><br/>
+  <% end %>
+  <div id="BooksList">
+    Ilość aktualnie wypożyczonych książek: <b><%= @books_for_return.length %></b>
+    <br/>
+    
+    <table style="padding-left: 10px; padding-bottom: 10px;">
+      <tbody id="TableBody">
+        <% for book in @books_for_return %>
+          <tr class="row">
+            <td><%= link_to shorten_name(book.title, 80), book %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -22,7 +22,7 @@ class Book < ActiveRecord::Base
   belongs_to :user
   belongs_to :owner
   has_many :statuses
-  has_many :loans
+  has_many :loans, :through => :statuses
   has_many :requests
 
 #  has_many :loans, :through => :statuses
@@ -30,7 +30,11 @@ class Book < ActiveRecord::Base
 
   named_scope :available, :include => :statuses, :conditions => [ 'statuses.loan_id IS NULL' ]
   named_scope :loaned, :include => :statuses, :conditions => ['statuses.loan_id IS NOT NULL']
+  
   named_scope :loaned_by_user, lambda { |*args| { :include => :loans, :conditions => ["loans.user_id = ?", (args.first || 1)], :order => "loans.date_due_for_return"} }
+  
+  named_scope :due_for_return, :include => [ :statuses, :loans ], :conditions => ['statuses.loan_id IS NOT NULL']
+  
   
   
   # 
@@ -76,6 +80,33 @@ class Book < ActiveRecord::Base
       current = s.loan if current.nil? || (!s.loan.nil? && s.loan.date_due_for_return < current.date_due_for_return)
     }
     current
+  end
+  
+  # TODO
+  def loaned_by_user?(user)
+    # KURWA JA PIERDOLE JEBANE RAILSY!!!
+    # WAŁ JAKICH MAŁO
+    #    logger.debug user.login
+    #    logger.debug self.loans.count
+    #    kurwa = nil
+    #    logger.debug "KURWA> #{self.inspect}"
+    #    if user && self.loans.count > 0
+    #      logger.debug "KURWA> START"
+    #      self.loans.each {|chuj|
+    #        logger.debug "KURWA> #{chuj.inspect}"
+    #      }
+    #      logger.debug "KURWA> END"
+    #    else
+    #      nil
+    #    end
+    
+    if user && self.loans.count > 0
+      statuses.detect { |s|
+        !s.loan.nil? && s.loan.user == user
+      }      
+    else
+      nil
+    end
   end
   
 end
