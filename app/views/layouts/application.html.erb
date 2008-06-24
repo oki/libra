@@ -12,10 +12,10 @@
   <body>
     <div id="top-menu">
       <div id="account">
-        <% if current_user -%>
-          Zalogowany jako <b><%= current_user.login %></b> | <%= link_to 'Moje konto', :controller => "account" %> | <%= link_to 'Wyloguj', '/logout' %>
+        <% if logged_in? -%>
+          Zalogowany jako <b><%= current_user.login %></b> | <%= link_to 'Moje konto', :controller => "account" %> | <%= link_to 'Wyloguj', logout_url %>
         <% else -%>
-          <%= link_to 'Zaloguj', '/login' %>
+          <%= link_to 'Zaloguj', login_url %>
         <% end -%>
       </div>
       
@@ -82,7 +82,11 @@
             </div>
             
             <%= link_to "szukaj", search_books_path, :class => 'menu-link' %><br />
-            <%= link_to "moje konto", { :controller => 'account' }, :class => 'menu-link' %><br />
+
+            <% if logged_in? %>
+              <%= link_to "moje konto", { :controller => 'account' }, :class => 'menu-link' %><br />
+            <% end %>
+
             <%= link_to "lista książek", books_path, :class => 'menu-link' %><br />
             <%= link_to "dodaj książkę", new_book_path, :class => 'menu-link' %><br /><br />
             
