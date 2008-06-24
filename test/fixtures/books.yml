@@ -19,11 +19,3 @@
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  descirption_id: 1
-  quantity: 1
-
-two:
-  descirption_id: 1
-  quantity: 1
