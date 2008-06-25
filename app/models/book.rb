@@ -45,9 +45,6 @@ class Book < ActiveRecord::Base
   # order by s.updated_at 
   # limit 1;
   
-  
-#  named_scope :xxx, :include => [:statuses, :loans], :conditions => { 'books.id = '}
-  
   validates_presence_of :quantity, :author, :title, :description, :user
   validates_associated :user
   validates_numericality_of :quantity
@@ -63,6 +60,7 @@ class Book < ActiveRecord::Base
  
   # gdy ksiazka jest dostepne do wypozyczenia, zwraca odpowidnie rekord statusu
   # w przeciwnym wypadku zwraca nil
+  # TODO testy, dla wypozyczenia ksiazki, controller loans, create, wrzucic wyporzyczenie ksiazki w model
   def available?
     statuses.detect { |s| s.loan.nil? }
   end

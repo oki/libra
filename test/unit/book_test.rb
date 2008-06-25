@@ -51,6 +51,26 @@ class BookTest < ActiveSupport::TestCase
     assert_equal ActiveRecord::Errors.default_error_messages[:not_a_number], b.errors.on(:quantity)
   end
 
+  def test_after_create_add_statuses
+    b = helper_new_book(:quantity => 3)
+    assert b.save
+    assert_equal Book.find(b.id), b
+    assert_equal 3, Status.count(:conditions => ["book_id = ?",  b]), "Status * quantity"
+  end
+
+  def test_available_book
+    assert_nil books(:available_book).available?
+  end
+
+  # TODO testy, dla wypozyczenia ksiazki, controller loans, create, wrzucic wyporzyczenie ksiazki w model
+  def test_available_book_loaned
+    true
+  end
+
+  def test_requested_book
+    assert_nil books(:available_book).requested?
+  end
+
   private
 
   def helper_new_book(attrs={})

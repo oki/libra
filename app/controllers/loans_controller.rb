@@ -19,6 +19,7 @@ class LoansController < ApplicationController
     redirect_to :controller => :books, :action => :show, :id => @book
   end
 
+  # "wypozycza" ksiazke
   def create
     user = current_user
     @book = Book.find(params[:book_id])

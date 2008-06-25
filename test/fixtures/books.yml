@@ -19,3 +19,6 @@
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+available_book:
+  author: test author
+  title: test title
