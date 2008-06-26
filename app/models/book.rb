@@ -81,22 +81,6 @@ class Book < ActiveRecord::Base
   
   # TODO
   def loaned_by_user?(user)
-    # KURWA JA PIERDOLE JEBANE RAILSY!!!
-    # WAŁ JAKICH MAŁO
-    #    logger.debug user.login
-    #    logger.debug self.loans.count
-    #    kurwa = nil
-    #    logger.debug "KURWA> #{self.inspect}"
-    #    if user && self.loans.count > 0
-    #      logger.debug "KURWA> START"
-    #      self.loans.each {|chuj|
-    #        logger.debug "KURWA> #{chuj.inspect}"
-    #      }
-    #      logger.debug "KURWA> END"
-    #    else
-    #      nil
-    #    end
-    
     if user && self.loans.count > 0
       statuses.detect { |s|
         !s.loan.nil? && s.loan.user == user
